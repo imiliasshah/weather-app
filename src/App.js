@@ -3,6 +3,7 @@ import bodyBg from "./assets/img/body-bg.jpg";
 import Header from "./components/Header";
 import UpcomingDays from "./components/UpcomingDays";
 import {getBulkWeatherForecast, getCurrentWeather} from "./services/weatherServices";
+import {arrayToGroupArray} from "./helpers/utils";
 
 class App extends Component {
   state = {
@@ -21,7 +22,7 @@ class App extends Component {
 
     getBulkWeatherForecast('dhaka')
       .then(res => {
-        this.setState({bulkForecast: res.list})
+        this.setState({bulkForecast: arrayToGroupArray(res.list, 8)})
       })
       .catch(errMsg => {
         console.log(errMsg);

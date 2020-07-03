@@ -16,3 +16,11 @@ export const formatAMPM = (date) => {
 export const timeStampToFormatDate = (timeStamp, format) => {
   return moment(timeStamp * 1000).format(format);
 }
+
+export const arrayToGroupArray = (arr, chunk) => {
+  let i, tempArray = [];
+  for (i = 0; i < arr.length; i += chunk) {
+    tempArray.push(arr.slice(i, i + chunk));
+  }
+  return tempArray;
+}

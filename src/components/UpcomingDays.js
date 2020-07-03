@@ -12,20 +12,14 @@ class UpcomingDays extends Component {
       <div className="upcoming-days">
         <Container>
           <div className="day-list">
-            {data.map((day, index) => {
-              if (index % 8 === 0) {
-                return (
-                  <div key={index} className="day-item">
-                    <DayCondition data={{
-                      day: timeStampToFormatDate(day.dt, 'll') === timeStampToFormatDate(new Date().getTime()/1000, 'll') ? 'Today' : timeStampToFormatDate(day.dt, 'll'),
-                      temp: day.main.temp,
-                      weatherCondition: day.weather[0].main
-                    }} isActive={index === 0}/>
-                  </div>
-                )
-              }
-              return null
-            })}
+            {data.map((day, index) => (
+              <div key={index} className="day-item">
+                <DayCondition data={{
+                  day: timeStampToFormatDate(day[0].dt, 'll') === timeStampToFormatDate(new Date().getTime() / 1000, 'll') ? 'Today' : timeStampToFormatDate(day[0].dt, 'll'),
+                  temp: day[0].main.temp,
+                  weatherCondition: day[0].weather[0].main
+                }} isActive={index === 0}/>
+              </div>))}
           </div>
         </Container>
       </div>
