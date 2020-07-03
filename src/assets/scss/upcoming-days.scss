@@ -1,14 +1,26 @@
 .upcoming-days {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, .5) 100%);
+
   .day-list {
-    margin: 0 -15px;
-    display: flex;
-    padding: 100px 30px;
-    // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, .5) 100%);
+    padding: 50px 0;
   }
 
   .day-item {
-    width: 20%;
-    flex: 0 0 20%;
-    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 768px) {
+    .day-list {
+      margin: 0 -15px;
+      display: flex;
+      padding: 100px 30px;
+      // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, .5) 100%);
+    }
+
+    .day-item {
+      width: 20%;
+      flex: 0 0 20%;
+      padding: 15px;
+    }
   }
 }

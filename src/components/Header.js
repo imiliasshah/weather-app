@@ -29,6 +29,7 @@ class Header extends Component {
     if (this.state.city !== '') {
       this.props.searchByCity(this.state.city);
       document.getElementById('searchForm').reset();
+      this.setState({city: ''})
     } else {
       alert('Please insert a city')
     }
