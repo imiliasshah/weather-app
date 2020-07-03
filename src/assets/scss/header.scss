@@ -1,0 +1,162 @@
+.header {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0.7) 100%);
+}
+
+.header-widgets {
+  @media (min-width: 768px) {
+    height: 320px;
+    display: flex;
+
+    .main-widget {
+      width: 420px;
+      height: 100%;
+    }
+
+    .meta-info,
+    .search-widget {
+      width: calc(100% - 420px);
+      height: 100%;
+    }
+  }
+}
+
+.main-widget {
+  padding: 20px 0 30px;
+
+  @media (min-width: 768px) {
+    padding: 30px 50px;
+  }
+
+
+  p {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .weather-icon {
+    font-size: 5rem;
+    line-height: 1;
+    opacity: .6;
+  }
+
+  .weather-condition {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .weather-temp {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 7px;
+
+    sup {
+      font-size: 2.7rem;
+    }
+
+    small {
+      font-size: .8rem;
+      margin-top: 5px;
+      display: block;
+      opacity: .8;
+      text-transform: lowercase;
+    }
+  }
+
+  .location {
+    font-size: 1rem;
+    opacity: .7;
+    font-weight: bold;
+  }
+
+  .date {
+    font-size: 1rem;
+  }
+}
+
+.meta-info,
+.search-widget {
+  padding: 15px 0;
+  position: relative;
+  text-align: right;
+
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
+
+  .datetime {
+    // position: absolute;
+    // top: 30px;
+    // left: 30px;
+
+    span {
+      display: block;
+    }
+
+    .time {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .date {
+      font-size: 1rem;
+    }
+  }
+
+  .search-location-form {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+
+    input {
+      width: 100%;
+      height: 44px;
+      border-radius: 22px;
+      border: 0 none;
+      padding: 0 66px 0 22px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      height: 44px;
+      width: 44px;
+      text-align: center;
+      background-color: transparent;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 0 none;
+      padding: 0;
+      line-height: 1;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .other-info {
+    display: block;
+    margin-top: 8px;
+
+    & > span {
+      display: block;
+    }
+
+    .info-title {
+      text-transform: uppercase;
+      font-size: .7rem;
+      font-weight: bold;
+      opacity: .6;
+    }
+  }
+}
