@@ -2,13 +2,11 @@ import React, {Component} from "react";
 import {Container} from "react-bootstrap";
 import "../assets/scss/header.scss";
 import {WiDayLightning} from "react-icons/all";
-import {getCurrentWeather} from "../services/weatherServices";
 import {formatAMPM, unit} from "../helpers/utils";
 import moment from "moment";
 
 class Header extends Component {
   state = {
-    currentWeather: null,
     time: 'time',
     date: 'date',
     day: 'day'
@@ -23,20 +21,11 @@ class Header extends Component {
         day: moment(date).format('dddd')
       })
     }, 1000);
-
-    console.log('55')
-
-    getCurrentWeather('Bangladesh')
-      .then(res => {
-        this.setState({currentWeather: res})
-      })
-      .catch(errMsg => {
-        console.log(errMsg)
-      })
   }
 
   render() {
-    const {currentWeather, time, date, day} = this.state;
+    const {time, date, day} = this.state;
+    const {data} = this.props;
 
     return (
       <header className="header">
@@ -44,11 +33,10 @@ class Header extends Component {
           <div className="header-widgets">
             <div className="main-widget">
               <p className="weather-icon"><WiDayLightning/></p>
-              <p className="weather-temp">{currentWeather?.main?.temp} <sup>o</sup>
+              <p className="weather-temp">{data?.main?.temp} <sup>o</sup>
                 <small>{unit === 'metric' ? 'Celsius' : 'fahrenheit'}</small></p>
-              <p className="location">{currentWeather?.name}, {currentWeather?.sys?.country}</p>
-              <p className="weather-condition">{currentWeather?.weather[0]?.main}</p>
-              {/*<p className="date">11 July, 2020</p>*/}
+              <p className="location">{data?.name}, {data?.sys?.country}</p>
+              <p className="weather-condition">{data?.weather[0]?.main}</p>
             </div>
 
 
@@ -58,13 +46,13 @@ class Header extends Component {
                 <span className="date">{day}, {date}</span>
                 <div className="other-info">
                   <span className="info-title">Comfort Level</span>
-                  <span className="info-item">Humidty: <strong>{currentWeather?.main?.humidity}%</strong></span>
-                  <span className="info-item">Feels Like: <strong>{currentWeather?.main?.feels_like} <sup>o</sup></strong></span>
+                  <span className="info-item">Humidty: <strong>{data?.main?.humidity}%</strong></span>
+                  <span className="info-item">Feels Like: <strong>{data?.main?.feels_like} <sup>o</sup></strong></span>
                 </div>
                 <div className="other-info">
                   <span className="info-title">Wind</span>
-                  <span className="info-item">Direction: <strong>{currentWeather?.wind?.deg} <sup>o</sup></strong></span>
-                  <span className="info-item">Speed: <strong>{currentWeather?.wind?.speed} km/h</strong></span>
+                  <span className="info-item">Direction: <strong>{data?.wind?.deg} <sup>o</sup></strong></span>
+                  <span className="info-item">Speed: <strong>{data?.wind?.speed} km/h</strong></span>
                 </div>
               </div>
               <div className="search-location-form">

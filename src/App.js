@@ -1,29 +1,46 @@
-import React, {useEffect} from "react";
+import React, {Component} from "react";
 import bodyBg from "./assets/img/body-bg.jpg";
 import Header from "./components/Header";
 import UpcomingDays from "./components/UpcomingDays";
-import {getGeoLocation} from "./services/weatherServices";
-import moment from "moment";
+import {getBulkWeatherForecast, getCurrentWeather} from "./services/weatherServices";
 
-function App() {
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log('Hello: ', position.coords.latitude);
-        getGeoLocation(position.coords.latitude, position.coords.longitude)
-          .then(res => {
-            const result = res.compound_code.substr(res.compound_code.indexOf(" ") + 1);
-            console.log(moment(1593777600).format('LLLL'));
-          })
+class App extends Component {
+  state = {
+    currentWeather: null,
+    bulkForecast: []
+  }
+
+  componentDidMount() {
+    getCurrentWeather('dhaka')
+      .then(res => {
+        this.setState({currentWeather: res})
       })
-    }
-  },[])
-  return (
-    <div className="app" style={{backgroundImage: `url(${bodyBg})`}}>
-      <Header/>
-      <UpcomingDays/>
-    </div>
-  );
+      .catch(errMsg => {
+        console.log(errMsg)
+      })
+
+    getBulkWeatherForecast('dhaka')
+      .then(res => {
+        this.setState({bulkForecast: res.list})
+      })
+      .catch(errMsg => {
+        console.log(errMsg);
+      })
+  }
+
+  render() {
+    const {currentWeather, bulkForecast} = this.state;
+
+    return (
+      <div className="app" style={{backgroundImage: `url(${bodyBg})`}}>
+        <Header data={currentWeather}/>
+
+        {bulkForecast.length > 0 &&
+        <UpcomingDays data={bulkForecast}/>
+        }
+      </div>
+    );
+  }
 }
 
 export default App;

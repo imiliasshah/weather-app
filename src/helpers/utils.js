@@ -1,5 +1,6 @@
+import moment from "moment";
+
 export const APP_ID = "31011df46e7338553fd0cf847d0e9ccc";
-export const GOOGLE_KEY = "AIzaSyAyUXFOChJjhQYtofLUdyI9P6LIJPl5XnA";
 export const unit = 'metric';
 
 export const formatAMPM = (date) => {
@@ -10,4 +11,8 @@ export const formatAMPM = (date) => {
   hours = hours ? hours : 12;
   minutes = minutes < 10 ? '0' + minutes : minutes;
   return hours + ':' + minutes + ' ' + ampm;
+}
+
+export const timeStampToFormatDate = (timeStamp, format) => {
+  return moment(timeStamp * 1000).format(format);
 }

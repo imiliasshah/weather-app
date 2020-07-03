@@ -1,6 +1,6 @@
 import axios from "axios";
 import {BASE_API_URL} from "../helpers/env";
-import {APP_ID, GOOGLE_KEY, unit} from "../helpers/utils";
+import {APP_ID, unit} from "../helpers/utils";
 
 export const getCurrentWeather = (city) => {
   return new Promise((resolve, reject) => {
@@ -14,11 +14,11 @@ export const getCurrentWeather = (city) => {
   })
 }
 
-export const getGeoLocation = (lat, lng) => {
+export const getBulkWeatherForecast = (city) => {
   return new Promise((resolve, reject) => {
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_KEY}`)
+    axios.get(`${BASE_API_URL}forecast?q=${city}&appid=${APP_ID}&units=${unit}`)
       .then(res => {
-        resolve(res.data.plus_code)
+        resolve(res.data)
       })
       .catch(err => {
         reject(err.message)
