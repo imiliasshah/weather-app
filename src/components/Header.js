@@ -10,9 +10,9 @@ const Header = () => {
         <div className="header-widgets">
           <div className="main-widget">
             <p className="weather-icon"><WiDayLightning/></p>
-            <p className="weather-condition">Clear Sky</p>
-            <p className="location">Dhaka, BD</p>
             <p className="weather-temp">39 <sup>o</sup> <small>Celsius</small></p>
+            <p className="location">Dhaka, BD</p>
+            <p className="weather-condition">Clear Sky</p>
             {/*<p className="date">11 July, 2020</p>*/}
           </div>
 

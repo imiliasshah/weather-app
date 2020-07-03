@@ -1,0 +1,46 @@
+.day-condition {
+  background-color: rgba(#ffffff, .6);
+  padding: 20px 15px;
+  text-align: center;
+  opacity: .7;
+
+  &.active,
+  &:hover {
+    opacity: 1;
+  }
+
+  .day {
+    font-size: .8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .weather-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    opacity: .7;
+  }
+
+  .temp {
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    & > span {
+      display: inline-block;
+    }
+
+    .min-temp {
+      opacity: .7;
+    }
+
+    .max-temp {
+      margin-right: 3px;
+    }
+  }
+
+  .weather-condition {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+}

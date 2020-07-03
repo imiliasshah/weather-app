@@ -1,0 +1,14 @@
+.upcoming-days {
+  .day-list {
+    margin: 0 -15px;
+    display: flex;
+    padding: 100px 30px;
+    // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, .5) 100%);
+  }
+
+  .day-item {
+    width: 14.28571428571429%;
+    flex: 0 0 14.28571428571429%;
+    padding: 15px;
+  }
+}
