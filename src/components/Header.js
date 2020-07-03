@@ -1,15 +1,17 @@
 import React, {Component} from "react";
 import {Container} from "react-bootstrap";
 import "../assets/scss/header.scss";
-import {WiDayLightning} from "react-icons/all";
 import {formatAMPM, unit} from "../helpers/utils";
 import moment from "moment";
+import WeatherIcon from "./WeatherIcon";
+import {FiSearch} from "react-icons/all";
 
 class Header extends Component {
   state = {
     time: 'time',
     date: 'date',
-    day: 'day'
+    day: 'day',
+    city: ''
   }
 
   componentDidMount() {
@@ -23,6 +25,21 @@ class Header extends Component {
     }, 1000);
   }
 
+  handleSearchByCity = () => {
+    if (this.state.city !== '') {
+      this.props.searchByCity(this.state.city);
+      document.getElementById('searchForm').reset();
+    } else {
+      alert('Please insert a city')
+    }
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() {
     const {time, date, day} = this.state;
     const {data} = this.props;
@@ -32,13 +49,12 @@ class Header extends Component {
         <Container>
           <div className="header-widgets">
             <div className="main-widget">
-              <p className="weather-icon"><WiDayLightning/></p>
+              <p className="weather-icon"><WeatherIcon icon={data?.weather[0]?.icon}/></p>
               <p className="weather-temp">{data?.main?.temp} <sup>o</sup>
                 <small>{unit === 'metric' ? 'Celsius' : 'fahrenheit'}</small></p>
               <p className="location">{data?.name}, {data?.sys?.country}</p>
               <p className="weather-condition">{data?.weather[0]?.main}</p>
             </div>
-
 
             <div className="meta-info">
               <div className="datetime">
@@ -55,9 +71,14 @@ class Header extends Component {
                   <span className="info-item">Speed: <strong>{data?.wind?.speed} km/h</strong></span>
                 </div>
               </div>
-              <div className="search-location-form">
-                <input type="search" className="search-input" placeholder="Type your city..."/>
-              </div>
+              <form id="searchForm" className="search-location-form">
+                <input type="search" name={"city"}
+                       onChange={this.handleInputChange}
+                       className="search-input" placeholder="Type your city..."/>
+                <button type={"button"}
+                        onClick={this.handleSearchByCity}
+                        className="btn-search"><FiSearch/></button>
+              </form>
             </div>
           </div>
         </Container>

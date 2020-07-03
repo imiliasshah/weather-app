@@ -17,7 +17,8 @@ class UpcomingDays extends Component {
                 <DayCondition data={{
                   day: timeStampToFormatDate(day[0].dt, 'll') === timeStampToFormatDate(new Date().getTime() / 1000, 'll') ? 'Today' : timeStampToFormatDate(day[0].dt, 'll'),
                   temp: day[0].main.temp,
-                  weatherCondition: day[0].weather[0].main
+                  weatherCondition: day[0].weather[0].main,
+                  icon: day[0].weather[0].icon
                 }} isActive={index === 0}/>
               </div>))}
           </div>

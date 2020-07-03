@@ -102,6 +102,7 @@
   }
 
   .search-location-form {
+    position: relative;
     width: 100%;
     margin-top: 30px;
 
@@ -110,7 +111,25 @@
       height: 44px;
       border-radius: 22px;
       border: 0 none;
-      padding: 0 22px;
+      padding: 0 66px 0 22px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      height: 44px;
+      width: 44px;
+      text-align: center;
+      background-color: transparent;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 0 none;
+      padding: 0;
+      line-height: 1;
 
       &:focus {
         outline: none;

@@ -29,12 +29,31 @@ class App extends Component {
       })
   }
 
+  handleSearchByCity = (city) => {
+    getCurrentWeather(city)
+      .then(res => {
+        this.setState({currentWeather: res})
+      })
+      .catch(errMsg => {
+        console.log(errMsg)
+      })
+
+    // Bulk Weather Forecast
+    getBulkWeatherForecast(city)
+      .then(res => {
+        this.setState({bulkForecast: arrayToGroupArray(res.list, 8)})
+      })
+      .catch(errMsg => {
+        console.log(errMsg);
+      })
+  }
+
   render() {
     const {currentWeather, bulkForecast} = this.state;
 
     return (
       <div className="app" style={{backgroundImage: `url(${bodyBg})`}}>
-        <Header data={currentWeather}/>
+        <Header searchByCity={this.handleSearchByCity} data={currentWeather}/>
 
         {bulkForecast.length > 0 &&
         <UpcomingDays data={bulkForecast}/>
