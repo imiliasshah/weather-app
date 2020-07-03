@@ -15,8 +15,8 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    const date = new Date();
     setInterval(() => {
+      const date = new Date();
       this.setState({
         time: formatAMPM(date),
         date: moment(date).format('LL'),
